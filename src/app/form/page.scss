@@ -1,0 +1,71 @@
+.form {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  header {
+    flex: 0 0 auto;
+    padding: 16px;
+    display: flex;
+    border-bottom: 1px solid #eaeaea;
+
+    .logo {
+      font-size: 1.4em;
+    }
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: aliceblue;
+
+    .progress {
+      display: flex;
+      height: 10px;
+      background-color: #F9F9F9;
+      border-bottom: 1px solid #eaeaea;
+      position: relative;
+
+
+      &>div {
+        width: 13%;
+        background-color: blue;
+        height: calc(100% + 2px);
+        margin: -1px 0px;
+      }
+    }
+
+    .step {
+      max-width: 900px;
+      width: 100%;
+      margin: 0px auto;
+      padding: 0px 16px;
+      display: flex;
+      gap: 32px;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+
+      a, button {
+        background-color: black;
+        border-radius: 999px;
+        padding: 16px 32px;
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+  }
+
+  footer {
+    flex: 0 0 auto;
+    border-top: 1px solid #eaeaea;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+}

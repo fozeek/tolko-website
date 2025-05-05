@@ -1,0 +1,32 @@
+.home {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    a, button {
+      background-color: black;
+      border-radius: 999px;
+      padding: 16px 32px;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  footer {
+    flex: 0 0 auto;
+    border-top: 1px solid #eaeaea;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+}
