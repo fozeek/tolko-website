@@ -68,7 +68,7 @@ export default function Form() {
       </header>
       <main>
         <div className="progress">
-          <div></div>
+          <div style={{ width: `${{ home: 20, hot: 40, wall: 60, water: 80, user: 100 }[step]}%` }}></div>
         </div>
         { step === 'work' &&
           <div className="step">
