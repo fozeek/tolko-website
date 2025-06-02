@@ -18,7 +18,7 @@ export default function Form() {
   const [data, setData] = useState({
     type: '',
   });
-  const [step, setStep] = useState('work');
+  const [step, setStep] = useState('user');
   const [isLoading, setIsLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -63,175 +63,426 @@ export default function Form() {
     <div className="form">
       <header>
         <Link href={'/'} className={`logo ${sourGummy.className}`}>
-          Tolko
+          Rénovation énergétique
         </Link>
       </header>
       <main>
         <div className="progress">
-          <div style={{ width: `${{ home: 20, hot: 40, wall: 60, water: 80, user: 100 }[step]}%` }}></div>
+          <div style={{ width: `${{ 'user': 20, 'project.1': 30, 'project.2': 40, 'project.3': 50, 'project.4': 60, 'project.5': 70, 'project.6': 80, 'end': 100 }[step]}%` }}></div>
         </div>
-        { step === 'work' &&
+        { step === 'user' &&
+          <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            Dites nous en plus sur vous :
+
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <label htmlFor="" style={{ fontWeight: 700 }}>Nom</label>
+                <input value={data.lastname} required onChange={event => setData(prevData => ({ ...prevData, lastname: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
+              </div>
+
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <label htmlFor="" style={{ fontWeight: 700 }}>Prénom</label>
+                <input value={data.firstname} required onChange={event => setData(prevData => ({ ...prevData, firstname: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <label htmlFor="" style={{ fontWeight: 700 }}>Code postal</label>
+                <input value={data.zipcode} required onChange={event => setData(prevData => ({ ...prevData, zipcode: event.target.value }))} style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
+              </div>
+
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <label htmlFor="" style={{ fontWeight: 700 }}>Ville</label>
+                <input value={data.city} required onChange={event => setData(prevData => ({ ...prevData, city: event.target.value }))} style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <label htmlFor="" style={{ fontWeight: 700 }}>Email</label>
+                <input value={data.email} type="email" required onChange={event => setData(prevData => ({ ...prevData, email: event.target.value }))} style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
+              </div>
+
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <label htmlFor="" style={{ fontWeight: 700 }}>Téléphone</label>
+                <input value={data.phone} type="phone" required onChange={event => setData(prevData => ({ ...prevData, phone: event.target.value }))} style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
+              </div>
+            </div>
+
+            <button onClick={() => {
+              setStep('project.1')
+            }}>Suivant</button>
+
+            {/* <form action={create}>
+              <button>Envoyer</button>
+            </form> */}
+          </div>
+        }
+        { step === 'project.1' &&
           <div className="step">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, beatae accusantium aliquid fugit delectus doloribus inventore! Sapiente necessitatibus sit, nisi dicta quos magnam, inventore ut nesciunt repellat molestiae modi a!
+            Votre projet concerne :
 
             <Picker>
-              <Picker.Choice label="Isolation" value="Isolation" onPick={(value) => {
-                setData(prevData => ({ ...prevData, type: value }))
-                setStep('home')
+              <Picker.Choice label="Une maison" value="home" onPick={(value) => {
+                setData(prevData => ({ ...prevData, home: value }))
+                setStep('project.2')
               }} />
-              <Picker.Choice label="Renovation" value="Renovation" onPick={(value) => {
-                setData(prevData => ({ ...prevData, type: value }))
-                setStep('home')
-              }} />
-              <Picker.Choice label="Solaire" value="Solaire" onPick={(value) => {
-                setData(prevData => ({ ...prevData, type: value }))
-                setStep('home')
-              }} />
-              <Picker.Choice label="Connaître mes aides" value="Connaître mes aides" onPick={(value) => {
-                setData(prevData => ({ ...prevData, type: value }))
-                setStep('home')
+              <Picker.Choice label="Un appartement" value="apt" onPick={(value) => {
+                setData(prevData => ({ ...prevData, home: value }))
+                setStep('project.2')
               }} />
             </Picker>
           </div>
         }
-        { step === 'home' &&
-          <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, beatae accusantium aliquid fugit delectus doloribus inventore! Sapiente necessitatibus sit, nisi dicta quos magnam, inventore ut nesciunt repellat molestiae modi a!
+        { step === 'project.2' &&
+          <div className="step">
+            La construction de ce logement date de :
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Superficie de la maison</label>
-              <input value={data.house_area} onChange={event => setData(prevData => ({ ...prevData, house_area: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Hauteur de la maison</label>
-              <input value={data.house_height} onChange={event => setData(prevData => ({ ...prevData, house_height: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Adresse</label>
-              <input value={data.house_address} onChange={event => setData(prevData => ({ ...prevData, house_address: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Type d'habitation</label>
-              <input value={data.house_type} onChange={event => setData(prevData => ({ ...prevData, house_type: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Année de construction</label>
-              <input value={data.house_year} onChange={event => setData(prevData => ({ ...prevData, house_year: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Nombre de pièces</label>
-              <input value={data.house_floors_count} onChange={event => setData(prevData => ({ ...prevData, house_floors_count: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Nombre d’étages</label>
-              <input value={data.house_rooms_count} onChange={event => setData(prevData => ({ ...prevData, house_rooms_count: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Nombre de salles de bain</label>
-              <input value={data.house_baths_count} onChange={event => setData(prevData => ({ ...prevData, house_baths_count: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <button onClick={() => {
-              setStep('hot')
-            }}>Suivant</button>
+            <Picker>
+              <Picker.Choice label="Moins de 2 ans" value="less2" onPick={(value) => {
+                setData(prevData => ({ ...prevData, year: value }))
+                setStep('project.3')
+              }} />
+              <Picker.Choice label="Entre 2 et 15 ans" value="btwn2&15" onPick={(value) => {
+                setData(prevData => ({ ...prevData, year: value }))
+                setStep('project.3')
+              }} />
+              <Picker.Choice label="Plus de 15 ans" value="15more" onPick={(value) => {
+                setData(prevData => ({ ...prevData, year: value }))
+                setStep('project.3')
+              }} />
+            </Picker>
           </div>
         }
-        { step === 'hot' &&
-          <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique, beatae accusantium aliquid fugit delectus doloribus inventore! Sapiente necessitatibus sit, nisi dicta quos magnam, inventore ut nesciunt repellat molestiae modi a!
+        { step === 'project.3' &&
+          <div className="step">
+            La construction de ce logement date de :
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Energie de chauffage</label>
-              <input value={data.heating_energy} onChange={event => setData(prevData => ({ ...prevData, heating_energy: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Système de chauffage</label>
-              <input value={data.heating_system} onChange={event => setData(prevData => ({ ...prevData, heating_system: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Age du système de chauffage</label>
-              <input value={data.heating_year} onChange={event => setData(prevData => ({ ...prevData, heating_year: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Nombre de radiateurs</label>
-              <input value={data.heating_radiators_count} onChange={event => setData(prevData => ({ ...prevData, heating_radiators_count: event.target.value }))} type="number" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Type de radiateurs</label>
-              <input value={data.heating_radiators_type} onChange={event => setData(prevData => ({ ...prevData, heating_radiators_type: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <button onClick={() => {
-              setStep('wall')
-            }}>Suivant</button>
+            <Picker>
+              <Picker.Choice label="Étiquette A" value="a" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Étiquette B" value="b" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Étiquette C" value="c" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Étiquette D" value="d" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Étiquette E" value="e" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Étiquette F" value="f" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Étiquette G" value="g" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+              <Picker.Choice label="Je ne sais pas" value="unknown" onPick={(value) => {
+                setData(prevData => ({ ...prevData, classe: value }))
+                setStep('project.4')
+              }} />
+            </Picker>
           </div>
         }
-        { step === 'wall' &&
-          <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            Tes murs sont secs ?
+        { step === 'project.4' &&
+          <div className="step">
+            Quel type de travaux envisagez-vous ? 
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Type d’isolation</label>
-              <input value={data.insulation_type} onChange={event => setData(prevData => ({ ...prevData, insulation_type: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Etat de l’isolation des murs (intérieur)</label>
-              <input value={data.insulation_interior_condition} onChange={event => setData(prevData => ({ ...prevData, insulation_interior_condition: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <button onClick={() => {
-              setStep('water')
-            }}>Suivant</button>
+            <Picker>
+              <Picker.Choice label="Isolation" value="isolation" onPick={(value) => {
+                setData(prevData => ({ ...prevData, type: value }))
+                setStep('project.5')
+              }} />
+              <Picker.Choice label="Rénovation" value="renovation" onPick={(value) => {
+                setData(prevData => ({ ...prevData, type: value }))
+                setStep('project.5')
+              }} />
+              <Picker.Choice label="Solaire" value="solaire" onPick={(value) => {
+                setData(prevData => ({ ...prevData, type: value }))
+                setStep('project.5')
+              }} />
+              <Picker.Choice label="Rénovation globale" value="globale" onPick={(value) => {
+                setData(prevData => ({ ...prevData, type: value }))
+                setStep('end')
+              }} />
+            </Picker>
           </div>
         }
-        { step === 'water' &&
-          <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            Tu te douches à l'eau froide ?
+        { step === 'project.5' &&
+          <>
+            { data.type === 'isolation' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Appareil de production d’eau-chaude</label>
-              <input value={data.hot_water_production_device} onChange={event => setData(prevData => ({ ...prevData, hot_water_production_device: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
+                <Picker>
+                  <Picker.Choice label="Isolation des combles" value="Isolation des combles" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                  <Picker.Choice label="Isolation des murs" value="Isolation des murs" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                  <Picker.Choice label="Isolation des planchers & sols" value="Isolation des planchers & sols" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                  <Picker.Choice label="Autres travaux" value="Autres travaux" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'chauffage' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
 
-            <button onClick={() => {
-              setStep('user')
-            }}>Suivant</button>
-          </div>
+                <Picker>
+                  <Picker.Choice label="Pompes à chaleur" value="Pompes à chaleur" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                  <Picker.Choice label="Chaudières" value="Chaudières" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                  <Picker.Choice label="Poêles (buches ou granulés)" value="Poêles (buches ou granulés)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                  <Picker.Choice label="Autres systèmes" value="Autres systèmes" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('project.6')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'solaire' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Production d’électricité (autoconsommation ou revente)" value="Production d’électricité (autoconsommation ou revente)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Chauffe-eau solaire individuel (CESI)" value="Chauffe-eau solaire individuel (CESI)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Chauffage et eau chaude solaire (SSC)" value="Chauffage et eau chaude solaire (SSC)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Kits solaires pour sites isolés / dépendances" value="Kits solaires pour sites isolés / dépendances" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Stockage d’énergie solaire (batterie lithium)" value="Stockage d’énergie solaire (batterie lithium)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Optimisation photovoltaïque" value="Optimisation photovoltaïque" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Maintenance & nettoyage des panneaux" value="Maintenance & nettoyage des panneaux" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, work: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+          </>
         }
-        { step === 'user' &&
+        { step === 'project.6' &&
+          <>
+            { data.type === 'isolation' && data.work === 'Isolation des combles' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Isolation des combles perdus" value="Isolation des combles perdus" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Isolation des combles aménageables" value="Isolation des combles aménageables" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Isolation toiture terrasse" value="Isolation toiture terrasse" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'isolation' && data.work === 'Isolation des murs' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Isolation thermique par l’extérieur (ITE)" value="Isolation thermique par l’extérieur (ITE)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Isolation intérieure des murs" value="Isolation intérieure des murs" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'isolation' && data.work === 'Isolation des planchers & sols' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Isolation des planchers bas" value="Isolation des planchers bas" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Isolation des sols et dalle béton" value="Isolation des sols et dalle béton" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'isolation' && data.work === 'Autres travaux' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Remplacement fenêtres isolantes (double/triple vitrage)" value="Remplacement fenêtres isolantes (double/triple vitrage)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Ventilation mécanique contrôlée (VMC) double flux" value="Ventilation mécanique contrôlée (VMC) double flux" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Portes d’entrée isolantes thermiques" value="Portes d’entrée isolantes thermiques" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Traitement des ponts thermiques" value="Traitement des ponts thermiques" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+
+            { data.type === 'chauffage' && data.work === 'Pompes à chaleur' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Pompe à chaleur air/air" value="Pompe à chaleur air/air" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Pompe à chaleur air/eau" value="Pompe à chaleur air/eau" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Pompe à chaleur géothermique" value="Pompe à chaleur géothermique" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="PAC hybride avec chaudière en relève" value="PAC hybride avec chaudière en relève" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'chauffage' && data.work === 'Chaudières' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Chaudière à condensation (gaz ou fioul)" value="Chaudière à condensation (gaz ou fioul)" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Chaudière à granulés bois" value="Chaudière à granulés bois" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Chaudière à bûches" value="Chaudière à bûches" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Chaudière hybride connectée" value="Chaudière hybride connectée" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'chauffage' && data.work === 'Poêles (buches ou granulés)' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Poêle à granulés programmable" value="Poêle à granulés programmable" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Poêle à bûches à haut rendement" value="Poêle à bûches à haut rendement" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+            { data.type === 'chauffage' && data.work === 'Autres systèmes' &&
+              <div className="step">
+                Quel type de travaux envisagez-vous ? 
+
+                <Picker>
+                  <Picker.Choice label="Insert de cheminée performant" value="Insert de cheminée performant" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Chauffe-eau thermodynamique" value="Chauffe-eau thermodynamique" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Radiateurs électriques à inertie" value="Radiateurs électriques à inertie" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                  <Picker.Choice label="Plancher chauffant hydraulique ou électrique" value="Plancher chauffant hydraulique ou électrique" onPick={(value) => {
+                    setData(prevData => ({ ...prevData, subWork: value }))
+                    setStep('end')
+                  }} />
+                </Picker>
+              </div>
+            }
+          </>
+        }
+        { step === 'end' &&
           <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            Dernières finso importantes !
+            Un professionnel vous contactera rapidement
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Prénom</label>
-              <input value={data.firstname} onChange={event => setData(prevData => ({ ...prevData, firstname: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Nom</label>
-              <input value={data.lastname} onChange={event => setData(prevData => ({ ...prevData, lastname: event.target.value }))} type="text" style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <label htmlFor="" style={{ fontWeight: 700 }}>Email</label>
-              <input value={data.email} type="email" required onChange={event => setData(prevData => ({ ...prevData, email: event.target.value }))} style={{ width: '100%', padding: '16px', fontSize: '1em', borderRadius: '8px', background: 'white', border: '1px solid #eaeaea' }} />
-            </div>
-
-            <form action={create}>
+            {/* <form action={create}>
               <button>Envoyer</button>
-            </form>
+            </form> */}
           </div>
         }
       </main>
