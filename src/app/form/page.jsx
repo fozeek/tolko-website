@@ -4,8 +4,8 @@ import Link from 'next/link';
 import './page.scss'
 import { Sour_Gummy } from "next/font/google";
 // import { Picker } from '@/components/form/picker';
-import { useState } from 'react';
-import createLead from '../actions/createLead';
+import { useEffect, useState } from 'react';
+import createOrUpdateLead from '../actions/createOrUpdateLead';
 import { Picker } from '../../components/form/picker';
 // import { Picker } from '@/components/form/picker';
 
@@ -22,12 +22,17 @@ export default function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  async function create() {
-    setIsLoading(true);
-    await createLead(data);
-    setIsLoading(true);
-    setSaved(true);
-  }
+
+  useEffect(() => {
+    async function save() {
+      const { leadId } = await createOrUpdateLead(data, step);
+      setData(prevData => ({ ...prevData, id: leadId }))
+    }
+
+    save();
+  }, [step]);
+
+  console.log('DATA', data);
 
   if (saved) {
     return (
@@ -141,15 +146,15 @@ export default function Form() {
 
             <Picker>
               <Picker.Choice label="Moins de 2 ans" value="less2" onPick={(value) => {
-                setData(prevData => ({ ...prevData, year: value }))
+                setData(prevData => ({ ...prevData, build_year: value }))
                 setStep('project.3')
               }} />
               <Picker.Choice label="Entre 2 et 15 ans" value="btwn2&15" onPick={(value) => {
-                setData(prevData => ({ ...prevData, year: value }))
+                setData(prevData => ({ ...prevData, build_year: value }))
                 setStep('project.3')
               }} />
               <Picker.Choice label="Plus de 15 ans" value="15more" onPick={(value) => {
-                setData(prevData => ({ ...prevData, year: value }))
+                setData(prevData => ({ ...prevData, build_year: value }))
                 setStep('project.3')
               }} />
             </Picker>
@@ -157,39 +162,39 @@ export default function Form() {
         }
         { step === 'project.3' &&
           <div className="step">
-            La construction de ce logement date de :
+            Quelle est sa classe energétique :
 
             <Picker>
               <Picker.Choice label="Étiquette A" value="a" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Étiquette B" value="b" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Étiquette C" value="c" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Étiquette D" value="d" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Étiquette E" value="e" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Étiquette F" value="f" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Étiquette G" value="g" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
               <Picker.Choice label="Je ne sais pas" value="unknown" onPick={(value) => {
-                setData(prevData => ({ ...prevData, classe: value }))
+                setData(prevData => ({ ...prevData, energy_category: value }))
                 setStep('project.4')
               }} />
             </Picker>
@@ -479,10 +484,6 @@ export default function Form() {
         { step === 'end' &&
           <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             Un professionnel vous contactera rapidement
-
-            {/* <form action={create}>
-              <button>Envoyer</button>
-            </form> */}
           </div>
         }
       </main>

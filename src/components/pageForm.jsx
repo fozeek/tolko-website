@@ -15,7 +15,7 @@ export default function PageForm({ page }) {
         </h1>
       </div>
       <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', borderRadius: '8px', aspectRatio: '16/7', overflow: 'hidden', display: 'flex', position: 'relative', padding: '16px' }}>
-        <div style={{ backgroundImage: 'url(/isolation-fenetres.png)', zIndex: 10, minWidth: '100%', height: '100%', backgroundSize: 'cover', position: 'absolute', top: '0px', left: '0px', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat' }} />
+        <div style={{ backgroundImage: `url(${page.cover_image_url || '/isolation-fenetres.png'})`, zIndex: 10, minWidth: '100%', height: '100%', backgroundSize: 'cover', position: 'absolute', top: '0px', left: '0px', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat' }} />
       </div>
       <div style={{ padding: '32px 16px' }}>
         <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
