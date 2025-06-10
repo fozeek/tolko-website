@@ -111,7 +111,7 @@ export default async function RootLayout({ children }) {
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <Link href="/team/contact">Nous contacter</Link>
                 <Link href="/team/qui-sommes-nous">Qui sommes nous</Link>
-                <Link href="/team/nos-engageemnts">Nos engaements</Link>
+                <Link href="/team/nos-engagements">Nos engaements</Link>
                 <Link href="/team/nous-rejoindre">Nous rejoindre !</Link>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
           <div style={{ textAlign: 'center', color: 'white', borderTop: '1px solid orange', paddingTop: '32px' }}>
-            &copy; 2025 • <Link href="/plan">Plan du site</Link> • Mentions légales • CGU • Cookies
+            &copy; 2025 • <Link href="/plan">Plan du site</Link> • <Link href="/legals">Mentions légales</Link> • <Link href="/cgu">CGU</Link> • <Link href="/cookies">Cookies</Link>
           </div>
         </div>
       </footer>

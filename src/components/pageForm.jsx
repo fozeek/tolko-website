@@ -2,8 +2,9 @@ import Link from "next/link";
 
 import Markdown from "react-markdown";
 import './markdown.scss';
+import PostsCarousel from '../app/(static)/postsCarousel';
 
-export default function PageForm({ page }) {
+export default function PageForm({ page, category }) {
   return (
     <main>
       <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', border: '1px solid #f6f6f6', borderTop: 'none', borderRadius: '0px 0px 8px 8px', padding: '8px 16px', fontSize: '0.9em', color: 'grey', background: '#F9F9F9' }}>
@@ -34,7 +35,10 @@ export default function PageForm({ page }) {
                 </div>
                 <div style={{ aspectRatio: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', background: '#F9F9F9', color: 'black', padding: '16px', cursor: 'pointer' }}>
                   Rénovation Globale
-                </div>
+             
+             ca_estimation
+             
+             azkdalkndz </div>
               </div> */}
               <div style={{ position: 'sticky', top: '0px', left: '0px', width: '100%' }}>
                 <Link href="/form" style={{ borderRadius: '8px', background: 'black', textAlign: 'center', color: 'white', padding: '16px', cursor: 'pointer', width: '100%', display: 'block' }}>
@@ -48,33 +52,7 @@ export default function PageForm({ page }) {
           </div>
         </div>
       </div>
-      <div style={{ padding: '32px 16px' }}>
-        <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <h2 style={{ fontSize: '2.4em' }}>Dernières actualitées</h2>
-          <div style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
-            <div style={{ flex: 3, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
-              <Link href="/isolation/isolation-fenetres" style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                {page.title}
-              </Link>
-              <Link href="/isolation/isolation-fenetres" style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                {page.title}
-              </Link>
-              <Link href="/isolation/isolation-fenetres" style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                {page.title}
-              </Link>
-              <Link href="/isolation/isolation-fenetres" style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                {page.title}
-              </Link>
-              <Link href="/isolation/isolation-fenetres" style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                {page.title}
-              </Link>
-              <Link href="/isolation/isolation-fenetres" style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
-                {page.title}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PostsCarousel category={category} />
     </main>
   )
 }

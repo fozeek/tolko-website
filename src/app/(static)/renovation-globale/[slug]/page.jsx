@@ -24,6 +24,6 @@ export default async function IsolationFenetre({ params }) {
   const page = await fetchPage(`renovation-globale/${slug}`);
   
   return (
-    <PageForm page={page} />
+    <PageForm page={page} category="globale" />
   )
 }

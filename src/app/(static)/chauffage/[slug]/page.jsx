@@ -24,6 +24,6 @@ export default async function IsolationFenetre({ params }) {
   const page = await fetchPage(`chauffage/${slug}`);
   
   return (
-    <PageForm page={page} />
+    <PageForm page={page} category="chauffage" />
   )
 }

@@ -22,7 +22,6 @@ export default function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-
   useEffect(() => {
     async function save() {
       const { leadId } = await createOrUpdateLead(data, step);
@@ -31,8 +30,31 @@ export default function Form() {
 
     save();
   }, [step]);
+  
+  function prev() {
+    setStep(prevStep => {
+      if (prevStep === 'project.1') {
+        return 'user';
+      }
+      if (prevStep === 'project.2') {
+        return 'project.1';
+      }
+      if (prevStep === 'project.3') {
+        return 'project.2';
+      }
+      if (prevStep === 'project.4') {
+        return 'project.3';
+      }
+      if (prevStep === 'project.5') {
+        return 'project.4';
+      }
+      if (prevStep === 'project.6') {
+        return 'project.5';
+      }
 
-  console.log('DATA', data);
+      return prevStep;
+    })
+  }
 
   if (saved) {
     return (
@@ -67,7 +89,7 @@ export default function Form() {
   return (
     <div className="form">
       <header>
-        <Link href={'/'} className={`logo ${sourGummy.className}`}>
+        <Link href={'/'} className={`logo`}>
           Rénovation énergétique
         </Link>
       </header>
@@ -75,6 +97,11 @@ export default function Form() {
         <div className="progress">
           <div style={{ width: `${{ 'user': 20, 'project.1': 30, 'project.2': 40, 'project.3': 50, 'project.4': 60, 'project.5': 70, 'project.6': 80, 'end': 100 }[step]}%` }}></div>
         </div>
+        { step !== 'end' && step !== 'user' &&
+          <div>
+            <button onClick={prev} style={{ background: 'transparent', fontSize: '1em', padding: '16px', border: 'none', cursor: 'pointer' }}>&lsaquo; Précedent</button>
+          </div>
+        }
         { step === 'user' &&
           <div className="step" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             Dites nous en plus sur vous :
