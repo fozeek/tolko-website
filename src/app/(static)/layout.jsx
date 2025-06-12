@@ -2,9 +2,10 @@
 import Link from "next/link";
 import './layout.scss';
 import { createClient } from "../../utils/supabase/server";
+import Header from "../../components/header";
 
 export const metadata = {
-  title: "Tolko",
+  title: "Rénovation énergetique",
   description: "Trouvez les professionnels selon vos besoins",
 };
 
@@ -16,6 +17,7 @@ async function fetchPages() {
     .select(`
       *
     `)
+    .eq('status', 'published')
     .order('created_at', { ascending: true })
 
   const { data, error } = await query;
@@ -33,73 +35,7 @@ export default async function RootLayout({ children }) {
       <div style={{ padding: '16px', background: 'black', textAlign: 'center', color: 'white' }}>
         TVA OFFERTE DU 13 MAI 2025 au 12 DECEMBRE 2025
       </div>
-      <header>
-        <Link href="/" className="logo">
-          Rénovation Énergétique
-        </Link>
-        <div className="menu">
-          <button>
-            Isolation
-            <div className="sub-menu">
-              <div className="wrapper">
-                <div className="links">
-                  {
-                    pages.filter(page => page.category === 'isolation').map(page => (
-                      <Link key={page.id} href={`/${page.slug}`}>{page.title}</Link>
-                    ))
-                  }
-                </div>
-                <div style={{ background: 'url(/combles-perdues.png)', height: '100%', flex: 1, backgroundPosition: 'center', backgroundSize: 'cover', flex: 1, borderRadius: '8px' }} />
-              </div>
-            </div>
-          </button>
-          <button>
-            Chauffage
-            <div className="sub-menu">
-              <div className="wrapper">
-                <div className="links">
-                  {
-                    pages.filter(page => page.category === 'chauffage').map(page => (
-                      <Link key={page.id} href={`/${page.slug}`}>{page.title}</Link>
-                    ))
-                  }
-                </div>
-                <div style={{ background: 'url(/combles-perdues.png)', height: '100%', flex: 1, backgroundPosition: 'center', backgroundSize: 'cover', flex: 1, borderRadius: '8px' }} />
-              </div>
-            </div>
-          </button>
-          <button>
-            Solaire
-            <div className="sub-menu">
-              <div className="wrapper">
-                <div className="links">
-                  {
-                    pages.filter(page => page.category === 'solaire').map(page => (
-                      <Link key={page.id} href={`/${page.slug}`}>{page.title}</Link>
-                    ))
-                  }
-                </div>
-                <div style={{ background: 'url(/combles-perdues.png)', height: '100%', flex: 1, backgroundPosition: 'center', backgroundSize: 'cover', flex: 1, borderRadius: '8px' }} />
-              </div>
-            </div>
-          </button>
-          <button>
-            Rénovation globale
-            <div className="sub-menu">
-              <div className="wrapper">
-                <div className="links">
-                  {
-                    pages.filter(page => page.category === 'globale').map(page => (
-                      <Link key={page.id} href={`/${page.slug}`}>{page.title}</Link>
-                    ))
-                  }
-                </div>
-                <div style={{ background: 'url(/combles-perdues.png)', height: '100%', flex: 1, backgroundPosition: 'center', backgroundSize: 'cover', flex: 1, borderRadius: '8px' }} />
-              </div>
-            </div>
-          </button>
-        </div>
-      </header>
+      <Header pages={pages} />
       {children}
       <footer style={{ background: 'rgb(209, 103, 39)', borderTop: '1px solid orange', padding: '32px 16px', flex: '0 0 auto', position: 'relative', zIndex: 50 }}>
         <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', flexDirection: 'column', gap: '32px', textAlign: 'left' }}>
@@ -151,7 +87,7 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
           <div style={{ textAlign: 'center', color: 'white', borderTop: '1px solid orange', paddingTop: '32px' }}>
-            &copy; 2025 • <Link href="/plan">Plan du site</Link> • <Link href="/legals">Mentions légales</Link> • <Link href="/cgu">CGU</Link> • <Link href="/cookies">Cookies</Link>
+            &copy; 2025 • <Link href="/plan" prefetch={false}>Plan du site</Link> • <Link href="/legals" prefetch={false}>Mentions légales</Link> • <Link href="/cgu" prefetch={false}>CGU</Link> • <Link href="/cookies" prefetch={false}>Cookies</Link>
           </div>
         </div>
       </footer>

@@ -40,7 +40,7 @@ export default async function PostsCarousel({ searchParams, category }) {
           <div style={{ flex: 3, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
             {
               posts.map((post) => (
-                <Link href={`/blog/${post.slug}`} style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
+                <Link key={post.id} href={`/blog/${post.slug}`} style={{ flex: 1, aspectRatio: '9/12', border: '1px solid #eaeaea', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px' }}>
                   {post.title}
                 </Link>
               ))

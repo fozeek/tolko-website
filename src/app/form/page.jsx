@@ -61,7 +61,7 @@ export default function Form() {
       <div className="form">
         <header>
           <Link href={'/'} className={`logo ${sourGummy.className}`}>
-            Tolko
+            Rénovation énergetique
           </Link>
         </header>
         <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -76,7 +76,7 @@ export default function Form() {
       <div className="form">
         <header>
           <Link href={'/'} className={`logo ${sourGummy.className}`}>
-            Tolko
+            Rénovation énergetique
           </Link>
         </header>
         <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -515,7 +515,7 @@ export default function Form() {
         }
       </main>
       <footer>
-        &copy; 2025 Tolko
+        &copy; 2025 Rénovation énergetique
       </footer>
     </div>
   )

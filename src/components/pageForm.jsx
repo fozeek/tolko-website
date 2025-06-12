@@ -15,34 +15,20 @@ export default function PageForm({ page, category }) {
           {page.title}
         </h1>
       </div>
-      <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', borderRadius: '8px', aspectRatio: '16/7', overflow: 'hidden', display: 'flex', position: 'relative', padding: '16px' }}>
-        <div style={{ backgroundImage: `url(${page.cover_image_url || '/isolation-fenetres.png'})`, zIndex: 10, minWidth: '100%', height: '100%', backgroundSize: 'cover', position: 'absolute', top: '0px', left: '0px', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat' }} />
-      </div>
+      <div style={{ maxWidth: '1120px', margin: '0px auto', borderRadius: '8px', aspectRatio: '16/7', backgroundImage: `url(${page.cover_image_url || '/isolation-fenetres.png'})`, backgroundSize: 'cover', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat' }} />
       <div style={{ padding: '32px 16px' }}>
         <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <h2 style={{ fontSize: '2.4em' }}>{page.description}</h2>
           <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
-            <div style={{ flex: 1, position: 'relative', height: '100%', overflow: 'visible' }}>
-              {/* <div style={{ display: 'grid', flexDirection: 'column', gap: '8px', gridTemplateColumns: 'repeat(2, 1fr)' }}>
-                <div style={{ aspectRatio: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', background: 'black', color: 'white', padding: '16px', cursor: 'pointer' }}>
-                  Maison
+            <div style={{ flex: 1, position: 'relative', overflow: 'inherit' }}>
+              <div style={{ position: 'sticky', top: '36px', left: '0px', width: '100%', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: '8px', background: '#E9E9E9', height: '100px' }}>
+                  @todo
+                  <br />
+                  Pre-Question
                 </div>
-                <div style={{ aspectRatio: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', background: '#F9F9F9', color: 'black', padding: '16px', cursor: 'pointer' }}>
-                  Appartement
-                </div>
-                <div style={{ aspectRatio: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', background: '#F9F9F9', color: 'black', padding: '16px', cursor: 'pointer' }}>
-                  Solaire
-                </div>
-                <div style={{ aspectRatio: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', background: '#F9F9F9', color: 'black', padding: '16px', cursor: 'pointer' }}>
-                  Rénovation Globale
-             
-             ca_estimation
-             
-             azkdalkndz </div>
-              </div> */}
-              <div style={{ position: 'sticky', top: '0px', left: '0px', width: '100%' }}>
-                <Link href="/form" style={{ borderRadius: '8px', background: 'black', textAlign: 'center', color: 'white', padding: '16px', cursor: 'pointer', width: '100%', display: 'block' }}>
-                  J'estime mon bien
+                <Link href={`/form${category ? `?t=${category}` : ''}`} style={{ borderRadius: '8px', background: 'black', textAlign: 'center', color: 'white', padding: '16px', cursor: 'pointer', width: '100%', display: 'block' }}>
+                  J'estime mes travaux
                 </Link>
               </div>
             </div>

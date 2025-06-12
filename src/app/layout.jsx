@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Tolko",
+  title: "Rénovation énergétique",
   description: "Trouvez les professionnels selon vos besoins",
 };
 
