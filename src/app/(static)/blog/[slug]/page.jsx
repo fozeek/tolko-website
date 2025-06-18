@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { createClient } from "../../../../utils/supabase/server";
 import Markdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
 import PostsCarousel from "../../postsCarousel";
+import '../../../../components/markdown.scss';
 
 async function fetchPost(slug) {  
   const supabase = await createClient();
@@ -39,7 +41,7 @@ export default async function Post({ params, searchParams }) {
         <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
             <div className="markdown-body" style={{ flex: 3, gap: '16px' }}>
-              <Markdown>{post.content}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
             </div>
           </div>
         </div>

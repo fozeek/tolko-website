@@ -1,8 +1,10 @@
 import { createClient } from "../../../utils/supabase/server";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import '../../../components/markdown.scss';
 
-async function fetchPage(slug) {  
+const fetchPage = async (slug) => {  
   const supabase = await createClient();
 
   const query = supabase
@@ -18,10 +20,41 @@ async function fetchPage(slug) {
   console.log('ERROR', error);
 
   return data || [];
+};
+
+// @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+export async function generateMetadata({ params }) {
+  const page = await fetchPage(`other/plan`);
+
+  return {
+    title: page.seo_title,
+    description: page.seo_description,
+    openGraph: {
+      title: page.seo_title,
+      description: page.seo_description,
+      images: [{
+        url: page.seo_image_url,
+        // width: 800,
+        // height: 600,
+      }],
+      locale: 'fr_FR',
+      type: 'website',
+      // url: 'https://nextjs.org',
+      // siteName: 'Next.js',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.seo_title,
+      description: page.seo_description,
+      // siteId: '1467726470533754880',
+      // creator: '@nextjs',
+      // creatorId: '1467726470533754880',
+      images: [page.seo_image_url], // Must be an absolute URL
+    },
+  }
 }
 
 export default async function IsolationFenetre({ params }) {
-  const { slug } = await params;
   const page = await fetchPage(`other/plan`);
   
   return (
@@ -39,7 +72,7 @@ export default async function IsolationFenetre({ params }) {
           <h2 style={{ fontSize: '2.4em' }}>{page.description}</h2>
           <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
             <div className="markdown-body" style={{ flex: 3, gap: '16px' }}>
-              <Markdown>{page.content}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>{page.content}</Markdown>
             </div>
           </div>
         </div>

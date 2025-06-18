@@ -3,6 +3,7 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import './markdown.scss';
 import PostsCarousel from '../app/(static)/postsCarousel';
+import remarkGfm from 'remark-gfm';
 
 export default function PageForm({ page, category }) {
   return (
@@ -33,7 +34,7 @@ export default function PageForm({ page, category }) {
               </div>
             </div>
             <div className="markdown-body" style={{ flex: 3, gap: '16px' }}>
-              <Markdown>{page.content}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>{page.content}</Markdown>
             </div>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import { createClient } from "../../../utils/supabase/server";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import '../../../components/markdown.scss';
 
 async function fetchPage(slug) {  
   const supabase = await createClient();
@@ -39,7 +41,7 @@ export default async function IsolationFenetre({ params }) {
           <h2 style={{ fontSize: '2.4em' }}>{page.description}</h2>
           <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
             <div className="markdown-body" style={{ flex: 3, gap: '16px' }}>
-              <Markdown>{page.content}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>{page.content}</Markdown>
             </div>
           </div>
         </div>
