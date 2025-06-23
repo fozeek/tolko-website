@@ -9,7 +9,7 @@ export default function PageForm({ page, category }) {
   return (
     <main>
       <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', border: '1px solid #f6f6f6', borderTop: 'none', borderRadius: '0px 0px 8px 8px', padding: '8px 16px', fontSize: '0.9em', color: 'grey', background: '#F9F9F9' }}>
-        <Link href="/">Accueil</Link> • {page.category} • {page.title}
+        <Link href="/">Accueil</Link> • {{ isolation: 'Isolation', solaire: 'Solaire', globale: 'Rénovation Globale', chauffage: 'Chauffage' }[page.category]} • {page.title}
       </div>
       <div style={{ padding: '16px' }}>
         <h1 style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', gap: '16px', color: 'black' }}>
@@ -33,7 +33,7 @@ export default function PageForm({ page, category }) {
                 </Link>
               </div>
             </div>
-            <div className="markdown-body" style={{ flex: 3, gap: '16px' }}>
+            <div className="markdown-body" style={{ flex: 3, gap: '16px', overflow: 'hidden' }}>
               <Markdown remarkPlugins={[remarkGfm]}>{page.content}</Markdown>
             </div>
           </div>
