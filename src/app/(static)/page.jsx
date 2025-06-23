@@ -49,16 +49,16 @@ export default async function Home({ searchParams }) {
         <div style={{ padding: '16px', background: '#f6f2eb', borderBottom: '1px solid #dcdedd' }}>
           <div style={{ maxWidth: '1120px', width: '100%', margin: '0px auto', display: 'flex', gap: '16px' }}>
             <Link href="/form" style={{ flex: 1, color: '#2e2e2e', background: '#ebe1ce', cursor: 'pointer', aspectRatio: '16/9', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', fontSize: '1.2em', fontWeight: 'normal' }}>
-              Je souscris un contrat d'entretien
+              Souscrire un contrat
             </Link>
             <Link href="/form" style={{ flex: 1, color: '#2e2e2e', background: '#ebe1ce', cursor: 'pointer', aspectRatio: '16/9', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', fontSize: '1.2em', fontWeight: 'normal' }}>
-              J'installe un équipement
+              Installer un équipement
             </Link>
             <Link href="/form" style={{ flex: 1, color: '#2e2e2e', background: '#ebe1ce', cursor: 'pointer', aspectRatio: '16/9', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', fontSize: '1.2em', fontWeight: 'normal' }}>
-              je veux être dépanner
+              Etre dépanné
             </Link>
             <Link href="/form" style={{ flex: 1, color: '#2e2e2e', background: '#ebe1ce', cursor: 'pointer', aspectRatio: '16/9', borderRadius: '8px', padding: '16px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '8px', fontSize: '1.2em', fontWeight: 'normal' }}>
-              Je calcule les aides de l'État
+              Calculer mes aides & primes
             </Link>
           </div>
         </div>

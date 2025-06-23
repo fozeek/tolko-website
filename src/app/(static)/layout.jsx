@@ -76,7 +76,7 @@ export default async function RootLayout({ children }) {
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <Link href="/team/contact">Nous contacter</Link>
                 <Link href="/team/qui-sommes-nous">Qui sommes nous</Link>
-                <Link href="/team/nos-engagements">Nos engaements</Link>
+                <Link href="/team/nos-engagements">Nos engagements</Link>
                 <Link href="/team/nous-rejoindre">Nous rejoindre !</Link>
               </div>
             </div>
